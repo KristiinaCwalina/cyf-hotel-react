@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  /* animation: App-logo-spin infinite 20s linear; */
   height: 80px;
 }
 
@@ -54,4 +54,20 @@ tr {
 
 .card {
   width: 18rem;
+}
+
+.card-img-top{
+  height:200px;
+  width:100%;
+}
+
+.row{
+  display:flex;
+  justify-content: space-between;
+  padding-top: 60px;
+}
+
+.App-logo{
+width: 50px;
+height: 50px;
 }
