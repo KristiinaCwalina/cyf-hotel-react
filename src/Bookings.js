@@ -5,32 +5,63 @@ import FakeBookings from "./data/fakeBookings.json";
 import moment from "moment";
 import Input from "./Input";
 
-const SearchResults = props => {
-  return (
-    <table>
-      <tr className="table table-bordered">
-        <th>Id</th>
-        <th>Title</th>
-        <th>First name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Room id</th>
-        <th>Check-in</th>
-        <th>Check-out</th>
-        <th>Total stay</th>
-      </tr>
-      {props.results.map(booking => {
-        const dateA = moment(booking.checkOutDate);
-        const dateB = moment(booking.checkInDate);
+class SearchResults extends Component {
+  state = {
+    results: this.props.results,
+    ascending: true,
+    sortingField: ""
+  };
 
-        console.log("DateA", dateA);
-        console.log("DateA", dateB);
-        const totalStay = dateA.diff(dateB, "days");
-        return <Row booking={booking} total={totalStay} />;
-      })}
-    </table>
-  );
-};
+  compare = (bookingA, bookingB, field) => {
+    const ascending = this.state.ascending;
+    let result = 0;
+    if (bookingA[field] < bookingB[field]) {
+      result = -1;
+    } else if (bookingA[field] > bookingB[field]) {
+      result = 1;
+    }
+    return result * (ascending ? 1 : -1);
+  };
+
+  handleClick = field => {
+    this.setState(previousState => {
+      const newAscending =
+        field === previousState.sortingField ? !previousState.ascending : true;
+      return {
+        sortingField: field,
+        ascending: newAscending,
+        results: previousState.results.sort((a, b) => this.compare(a, b, field))
+      };
+    });
+  };
+  render() {
+    return (
+      <table>
+        <tr className="table table-bordered">
+          <th onClick={() => this.handleClick("id")}>Id</th>
+          <th onClick={() => this.handleClick("title")}>Title</th>
+          <th onClick={() => this.handleClick("firstName")}>First name</th>
+          <th onClick={() => this.handleClick("surname")}>Surname</th>
+          <th onClick={() => this.handleClick("email")}>Email</th>
+          <th onClick={() => this.handleClick("roomId")}>Room id</th>
+          <th onClick={() => this.handleClick("checkInDate")}>Check-in</th>
+          <th onClick={() => this.handleClick("checkOutDate")}>Check-out</th>
+          <th>Total stay</th>
+        </tr>
+        {this.state.results.map(booking => {
+          const dateA = moment(booking.checkOutDate);
+          const dateB = moment(booking.checkInDate);
+
+          console.log("DateA", dateA);
+          console.log("DateA", dateB);
+          const totalStay = dateA.diff(dateB, "days");
+          return <Row booking={booking} total={totalStay} />;
+        })}
+      </table>
+    );
+  }
+}
+
 class Row extends Component {
   state = {
     isHighlighted: false
@@ -86,7 +117,7 @@ class Bookings extends Component {
     console.log(searchVal);
   };
   componentDidMount() {
-    fetch("https://cyf-react.glitch.me/")
+    fetch("http://localhost:4000/bookings")
       .then(response => {
         if (response.status === 200) {
           return response.json();
