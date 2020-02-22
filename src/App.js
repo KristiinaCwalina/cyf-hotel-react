@@ -3,11 +3,13 @@ import React from "react";
 import Bookings from "./Bookings";
 import "./App.css";
 import Restaurant from "./Restaurant";
+import Clock from "./Clock";
 
 const App = () => {
   return (
     <div className="App">
       <Heading/>
+      <Clock/>
       <TouristInfoCards/>
       <Bookings />
       <Restaurant/>

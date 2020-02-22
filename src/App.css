@@ -68,10 +68,17 @@ tr {
 }
 
 .App-logo{
+ 
 width: 50px;
 height: 50px;
+
 }
 
 .orderList{
   text-align: center;
+}
+
+.clock{
+  display: flex;
+  justify-content: flex-end;
 }

@@ -1,6 +1,18 @@
-import React from "react";
+import React, {Component} from "react";
 
-const Search = () => {
+class Search extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      searchInput: ""
+    };
+  }
+  handleSearchInput=(event)=>{
+  
+     this.setState({searchInput: event.target.value});
+    }
+  
+    render(){
   return (
     <div className="search">
       <div className="page-header">
@@ -8,14 +20,16 @@ const Search = () => {
       </div>
       <div className="row search-wrapper">
         <div className="col">
-          <form className="form-group search-box">
+          <form className="form-group search-box" onSubmit={(event)=>{ this.props.search(event,this.state.searchInput)}}>
             <label htmlFor="customerName">Customer name</label>
             <div className="search-row">
               <input
+              value={this.state.searchInput}
                 type="text"
                 id="customerName"
                 className="form-control"
                 placeholder="Customer Id"
+                onChange={this.handleSearchInput}
               />
              <Button/>
             </div>
@@ -24,6 +38,7 @@ const Search = () => {
       </div>
     </div>
   );
+}
 };
 const Button=()=>{
   return(
