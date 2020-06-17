@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cyf-hotel-react/static/css/main.c2ca8abf.chunk.css",
+    "main.js": "/cyf-hotel-react/static/js/main.04b3519e.chunk.js",
+    "main.js.map": "/cyf-hotel-react/static/js/main.04b3519e.chunk.js.map",
+    "runtime~main.js": "/cyf-hotel-react/static/js/runtime~main.dc6ae9fc.js",
+    "runtime~main.js.map": "/cyf-hotel-react/static/js/runtime~main.dc6ae9fc.js.map",
+    "static/js/2.6b777414.chunk.js": "/cyf-hotel-react/static/js/2.6b777414.chunk.js",
+    "static/js/2.6b777414.chunk.js.map": "/cyf-hotel-react/static/js/2.6b777414.chunk.js.map",
+    "index.html": "/cyf-hotel-react/index.html",
+    "precache-manifest.a2c7364655a39e0246a854a04f17fb76.js": "/cyf-hotel-react/precache-manifest.a2c7364655a39e0246a854a04f17fb76.js",
+    "service-worker.js": "/cyf-hotel-react/service-worker.js",
+    "static/css/main.c2ca8abf.chunk.css.map": "/cyf-hotel-react/static/css/main.c2ca8abf.chunk.css.map"
+  }
+}
